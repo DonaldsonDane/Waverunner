@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 
 
 
-    [SerializeField] private GameObject aiPathObject;
    
 
     //Holds what ship the player has chosen
@@ -107,6 +106,7 @@ public class GameManager : MonoBehaviour
         if (next.name == "MainScene")
         {
             BeginOpening();
+           
         }
 
 
@@ -139,41 +139,22 @@ public class GameManager : MonoBehaviour
 
 
 
-        //Make sure the AI can't move
-
-        // Check if the reference to the GameObject is assigned
-        if (aiPathObject != null)
-        {
-            // Get the AIPath component on the GameObject
-            AIPath aiPath = aiPathObject.GetComponent<AIPath>();
-
-            // Check if the AIPath component exists
-            if (aiPath != null)
-            {
-                // Change the canMove property
-                aiPath.canMove = false; // Set to true or false as needed
-            }
-            else
-            {
-                Debug.LogError("AIPath component not found on the GameObject.");
-            }
-        }
-        else
-        {
-            Debug.LogError("Reference to the GameObject with AIPath script is not assigned.");
-        }
-
 
         StartCoroutine(OpeningSequence());
     }
 
 
 
-    [SerializeField] private Animator CountDownAnim;
+    
 
     private IEnumerator OpeningSequence()
     {
-        CountDownAnim.SetTrigger("Count");
-        yield return null;
+
+      
+        yield return new WaitForSeconds(5);
+
     }
+
+
+  
 }

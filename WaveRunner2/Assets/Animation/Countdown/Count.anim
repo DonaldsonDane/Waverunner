@@ -522,40 +522,47 @@ AnimationClip:
   - time: 0
     functionName: PlaySoundSFX
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f03d2792984f8cb47a261ca1eff6edad, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: bf369d4d636ec4e22a2f60d6fbb9af5e, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.0166667
     functionName: PlaySoundSFX
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f03d2792984f8cb47a261ca1eff6edad, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: bf369d4d636ec4e22a2f60d6fbb9af5e, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2
     functionName: PlaySoundSFX
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f03d2792984f8cb47a261ca1eff6edad, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: bf369d4d636ec4e22a2f60d6fbb9af5e, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 3
     functionName: PlaySoundSFX
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f03d2792984f8cb47a261ca1eff6edad, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: bf369d4d636ec4e22a2f60d6fbb9af5e, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 4
     functionName: PlaySoundSFX
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: f03d2792984f8cb47a261ca1eff6edad, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: bf369d4d636ec4e22a2f60d6fbb9af5e, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 5
-    functionName: PlaySoundSFX
+    functionName: BeginMusicTheme
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: ade8e9f52d483ff4fb641f86002097cd, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 5.0833335
+    functionName: CountdownFinished
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

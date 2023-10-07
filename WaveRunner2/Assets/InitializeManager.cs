@@ -1,30 +1,97 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class InitializeManager : MonoBehaviour
 {
-    // Spawn Transforms
     [SerializeField] private Transform[] startingPositions;
-
-    private static Transform[] spawns;
-
-
+    [SerializeField] private GameObject[] aiPathObject;
+    [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Animator CountDownAnim;
+
+
+    [SerializeField] private MeshFilter[] enemyMeshChoices;
+
+
+    [SerializeField] private Transform finishPoint;
+
+    private GameManager _gm;
+    private bool[] spawnLocationUsed;
+
     void Awake()
     {
-        spawns = startingPositions;
+        _gm = GameObject.Find("GAMEMANAGER").GetComponent<GameManager>();
+        if (_gm == null)
+        {
+            Debug.LogError("GameManager hasn't been set!");
+        }
+
+        
+       
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         CountDownAnim.SetTrigger("Count");
+
+        // Initialize the array to keep track of used spawn locations.
+        spawnLocationUsed = new bool[startingPositions.Length];
+
+        // Call the SpawnEnemies method when the script starts.
+        SpawnEnemies();
+        aiPathObject = GameObject.FindGameObjectsWithTag("Enemy");
+
+        for(int i = 0; i<aiPathObject.Length; i++)
+        {
+            aiPathObject[i].GetComponent<AIDestinationSetter>().target = finishPoint;
+            aiPathObject[i].GetComponent<MeshFilter>().sharedMesh = enemyMeshChoices[Random.Range(0, enemyMeshChoices.Length)].sharedMesh;
+        }
+        //DisableAI();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    public void EnableAI()
+    {
+        // Disable AI movement
+        if (aiPathObject != null)
+        {
+            for (int i = 0; i < aiPathObject.Length; i++)
+            {
+                AIPath aiPath = aiPathObject[i].GetComponent<AIPath>();
+                if (aiPath != null)
+                {
+                    aiPath.canMove = true; // Set to true or false as needed
+                }
+                else
+                {
+                    Debug.LogError("AIPath component not found on the GameObject.");
+                }
+            }
+        }
+
+       
+    }
+
+  
+
+    private void SpawnEnemies()
+    {
+        for (int i = 0; i < _gm.enemyCount; i++)
+        {
+            int randomIndex;
+            do
+            {
+                randomIndex = Random.Range(0, startingPositions.Length);
+            } while (spawnLocationUsed[randomIndex]);
+
+            spawnLocationUsed[randomIndex] = true;
+            Vector3 spawnPosition = startingPositions[randomIndex].position;
+            Instantiate(enemyPrefab, spawnPosition, transform.rotation * Quaternion.Euler(0f, 90f, 0f));
+        }
     }
 }

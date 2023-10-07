@@ -25,27 +25,16 @@ public class BoatController : MonoBehaviour
         // Get pitch input for boat's upward/downward rotation
         float pitchInput = Input.GetAxis("VerticalPitch");
 
-        // Calculate boat's forward and right vectors in world space
-        Vector3 boatForward = transform.forward;
-        Vector3 boatRight = transform.right;
-
-        // Calculate boat's forward and right vectors in the horizontal plane
-        boatForward.y = 0;
-        boatRight.y = 0;
-        boatForward.Normalize();
-        boatRight.Normalize();
-
         // Calculate the desired movement direction based on input
-        Vector3 moveDirection = (-boatForward * verticalInput) + (-boatRight * horizontalInput);
+        Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
-        // Apply forward/backward movement using AddForce with inverted direction
-        Vector3 forwardForce = moveDirection * moveSpeed;
-        boatRigidbody.AddForce(forwardForce, ForceMode.Force);
+        // Calculate the boat's forward direction based on its movement direction
+        Vector3 boatForward = Vector3.RotateTowards(transform.forward, moveDirection, turnSpeed * Time.deltaTime, 0f);
 
-        // Apply boat rotation for turning using AddTorque with inverted direction
+        // Apply boat rotation for turning using AddTorque with boatForward direction
         if (moveDirection != Vector3.zero)
         {
-            Vector3 rotationTorque = Vector3.up * (-horizontalInput) * turnSpeed;
+            Vector3 rotationTorque = Vector3.up * Vector3.SignedAngle(transform.forward, boatForward, Vector3.up) * turnSpeed;
             boatRigidbody.AddTorque(rotationTorque, ForceMode.Force);
         }
 
@@ -55,6 +44,12 @@ public class BoatController : MonoBehaviour
             Vector3 pitchTorque = Vector3.right * pitchInput * pitchSpeed;
             boatRigidbody.AddTorque(pitchTorque, ForceMode.Force);
         }
+
+        // Calculate the forward force based on the boat's forward direction
+        Vector3 forwardForce = boatForward * verticalInput * moveSpeed;
+
+        // Apply forward/backward movement using AddForce
+        boatRigidbody.AddForce(forwardForce, ForceMode.Force);
 
         // Apply drag to simulate slowing down
         boatRigidbody.drag = forwardDrag;
