@@ -11,8 +11,11 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private CanvasGroup mainCG;
     [SerializeField] private CanvasGroup shipSelectionCG;
 
+    [SerializeField] private GameManager gm;
+
 
     [SerializeField] private Transform shipImageHolderTransform;
+    [SerializeField] private Transform shipPrefabsTransform;
 
     private int shipIndex;
 
@@ -58,6 +61,8 @@ public class MenuManager : MonoBehaviour
                 shipName.text = "The Wonky Whizzer";
                 break;
         }
+
+        gm.playerShipId = shipIndex;
     }
     public void MenuButtonClicked(int id)
     {
@@ -128,6 +133,7 @@ public class MenuManager : MonoBehaviour
 
     private void Return()
     {
+        shipIndex = 0;
         ShowCanvasGroup(mainCG);
         HideCanvasGroup(shipSelectionCG);
         HideCanvasGroup(settingsCG);
@@ -155,7 +161,7 @@ public class MenuManager : MonoBehaviour
             Sequence moveSequence = DOTween.Sequence();
 
             shipImageHolderTransform.DOLocalMoveX((shipImageHolderTransform.localPosition.x -600), 0); // Adjust the X value as needed
-
+            shipPrefabsTransform.DOLocalMoveX((shipPrefabsTransform.localPosition.x + 600), 0); // Adjust the X value as needed
             // Start the sequence.
             moveSequence.Play();
             shipIndex++;
@@ -183,7 +189,7 @@ public class MenuManager : MonoBehaviour
             Sequence moveSequence = DOTween.Sequence();
 
             shipImageHolderTransform.DOLocalMoveX((shipImageHolderTransform.localPosition.x + 600), 0); // Adjust the X value as needed
-
+            shipPrefabsTransform.DOLocalMoveX((shipPrefabsTransform.localPosition.x - 600), 0); // Adjust the X value as needed
             // Start the sequence.
             moveSequence.Play();
             shipIndex--;
