@@ -1,12 +1,22 @@
 using System.Collections;
+using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
 
     // Singleton instance
     private static GameManager _instance;
+
+
+
+
+
+    [SerializeField] private GameObject aiPathObject;
+   
 
     //Holds what ship the player has chosen
     public int playerShipId = 0;
@@ -60,18 +70,47 @@ public class GameManager : MonoBehaviour
             _instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+
+
+    
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        SceneManager.activeSceneChanged += ChangedActiveScene;
+      
     }
+
+
+
+
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void ChangedActiveScene(Scene current, Scene next)
+    {
+        string currentName = current.name;
+
+        if (currentName == null)
+        {
+            // Scene1 has been removed
+            currentName = "Replaced";
+        }
+
+        Debug.Log("Scenes: " + currentName + ", " + next.name);
+
+        if (next.name == "MainScene")
+        {
+            BeginOpening();
+        }
+
+
+
     }
 
 
@@ -82,5 +121,59 @@ public class GameManager : MonoBehaviour
         id = playerShipId;
         count = enemyCount;
         difficulty = difficultyCount;
+
+    }
+
+
+    private void BeginOpening()
+    {
+
+
+
+
+
+
+        Debug.Log("Beginning Starting Phase");
+
+        //Set Variables
+
+
+
+        //Make sure the AI can't move
+
+        // Check if the reference to the GameObject is assigned
+        if (aiPathObject != null)
+        {
+            // Get the AIPath component on the GameObject
+            AIPath aiPath = aiPathObject.GetComponent<AIPath>();
+
+            // Check if the AIPath component exists
+            if (aiPath != null)
+            {
+                // Change the canMove property
+                aiPath.canMove = false; // Set to true or false as needed
+            }
+            else
+            {
+                Debug.LogError("AIPath component not found on the GameObject.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Reference to the GameObject with AIPath script is not assigned.");
+        }
+
+
+        StartCoroutine(OpeningSequence());
+    }
+
+
+
+    [SerializeField] private Animator CountDownAnim;
+
+    private IEnumerator OpeningSequence()
+    {
+        CountDownAnim.SetTrigger("Count");
+        yield return null;
     }
 }

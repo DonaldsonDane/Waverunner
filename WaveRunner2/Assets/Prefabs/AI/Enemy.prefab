@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5990640320120924947}
   m_Layer: 2
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,13 +181,13 @@ MonoBehaviour:
   repathRateCompatibility: 0.5
   canSearchCompability: 1
   orientation: 0
-  enableRotation: 1
+  enableRotation: 0
   autoRepath:
-    mode: 1
+    mode: 2
     interval: 0.5
-    sensitivity: 10
+    sensitivity: 4
     maximumInterval: 2
-    visualizeSensitivity: 0
+    visualizeSensitivity: 1
   targetCompatibility: {fileID: 0}
   maxAcceleration: -2.5
   rotationSpeed: 100
@@ -195,7 +195,7 @@ MonoBehaviour:
   pickNextWaypointDist: 1
   endReachedDistance: 0.1
   alwaysDrawGizmos: 1
-  slowWhenNotFacingTarget: 0
+  slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
 --- !u!114 &5990640320120924947
