@@ -10,6 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private CanvasGroup settingsCG;
     [SerializeField] private CanvasGroup mainCG;
     [SerializeField] private CanvasGroup shipSelectionCG;
+    [SerializeField] private CanvasGroup enemyChooseCG;
 
     [SerializeField] private GameManager gm;
 
@@ -84,6 +85,12 @@ public class MenuManager : MonoBehaviour
             case 3:
                 Return();
                 break;
+            case 4:
+                EnemyConfig();
+                break;
+            case 5:
+                ReturnToShipSelection();
+                break;
         }
 
     }
@@ -137,6 +144,20 @@ public class MenuManager : MonoBehaviour
         ShowCanvasGroup(mainCG);
         HideCanvasGroup(shipSelectionCG);
         HideCanvasGroup(settingsCG);
+    }
+
+    private void EnemyConfig()
+    {
+        HideCanvasGroup(mainCG);
+        HideCanvasGroup(shipSelectionCG);
+        ShowCanvasGroup(enemyChooseCG);
+    }
+
+    private void ReturnToShipSelection()
+    {
+        HideCanvasGroup(mainCG);
+        HideCanvasGroup(enemyChooseCG);
+        ShowCanvasGroup(shipSelectionCG);
     }
 
     public void NextShip()
