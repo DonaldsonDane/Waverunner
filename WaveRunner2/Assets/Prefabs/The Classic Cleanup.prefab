@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4583801671224139497}
   - component: {fileID: 4583801671231730665}
   m_Layer: 0
-  m_Name: Ship_6
+  m_Name: The Classic Cleanup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

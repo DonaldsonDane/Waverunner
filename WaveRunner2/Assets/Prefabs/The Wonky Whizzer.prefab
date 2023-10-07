@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3873239623109313933}
   - component: {fileID: 3873239623116646541}
   m_Layer: 0
-  m_Name: Ship_4
+  m_Name: The Wonky Whizzer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
