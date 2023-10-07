@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 public class MenuManager : MonoBehaviour
@@ -26,6 +27,8 @@ public class MenuManager : MonoBehaviour
 
 
     [SerializeField] TMP_Text shipName;
+
+    [SerializeField] private Animator loadingScreenAnim;
 
 
     private void Start()
@@ -91,6 +94,10 @@ public class MenuManager : MonoBehaviour
             case 5:
                 ReturnToShipSelection();
                 break;
+            case 6:
+                BeginGame();
+                break;
+
         }
 
     }
@@ -131,6 +138,12 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+
+    private void BeginGame()
+    {
+        loadingScreenAnim.SetTrigger("Reveal");
+    }
+
     private void ShipSelection()
     {
         shipIndex = 0;
@@ -168,6 +181,36 @@ public class MenuManager : MonoBehaviour
     public void PrevShip()
     {
         ShowPrievShip();
+    }
+
+
+    [SerializeField] private TMP_Dropdown difficultyDropdown;
+
+    public void UpdateDifficulty()
+    {
+        switch (difficultyDropdown.value)
+        {
+            //I play Candy Crush
+            case 0:
+                gm.difficultyCount = GameManager.DifficultyCount.Easy;
+                break;
+            // I play Minecraft
+            case 1:
+                gm.difficultyCount = GameManager.DifficultyCount.Medium;
+                break;
+            //Discord is my main source of comms
+            case 2:
+                gm.difficultyCount = GameManager.DifficultyCount.Hard;
+                break;
+        }
+    }
+
+    [SerializeField] private TMP_Dropdown enemyDropdown;
+    public void UpdateEnemyCount()
+    {
+        //We have to add 1, because of array index
+        gm.enemyCount = enemyDropdown.value + 1; 
+     
     }
 
 

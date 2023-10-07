@@ -1,0 +1,41 @@
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class LoadingScreenManager : MonoBehaviour
+{
+    private Animator _animatorComponent;
+
+    private void Start()
+    {
+        _animatorComponent = transform.GetComponent<Animator>();  
+
+        // Remove it if you don't want to hide it in the Start function and call it elsewhere
+        HideLoadingScreen();
+    }
+
+    public void RevealLoadingScreen()
+    {
+        _animatorComponent.SetTrigger("Reveal");
+    }
+
+    public void HideLoadingScreen()
+    {
+        // Call this function, if you want start hiding the loading screen
+        _animatorComponent.SetTrigger("Hide");
+    }
+
+    public void OnFinishedReveal()
+    {
+        // TODO: remove it and load your own scene !!
+        //transform.parent.GetComponent<DemoSceneManager>().OnLoadingScreenRevealed();
+        SceneManager.LoadScene("MainScene");
+    }
+
+    public void OnFinishedHide()
+    {
+        // Call your custom functions here after the loading screen is hidden
+        // For example, you can call a function in your GameManager script
+        GameManager.Instance.InitializeGame();
+    }
+
+}
