@@ -87,6 +87,8 @@ public class PlayerManager : MonoBehaviour
                 SpinOnSpit(); // Call the method for spinning when collided with a penguin.
             }
 
+
+
             else
             {
                 Sink();
@@ -99,6 +101,9 @@ public class PlayerManager : MonoBehaviour
         if(other.gameObject.tag == "Finish")
         {
             rm.RaceOver();
+        }else if(other.gameObject.tag == "Speed")
+        {
+            SpeedCollected();
         }
     }
 
@@ -109,7 +114,7 @@ public class PlayerManager : MonoBehaviour
             isSpinning = true;
             GetComponent<Animator>().enabled = true;
             GetComponent<Animator>().SetTrigger("Spin");
-            StartCoroutine(ResetSpin(3.0f));
+            StartCoroutine(ResetSpin(5.0f));
         }
     }
 
@@ -188,5 +193,26 @@ public class PlayerManager : MonoBehaviour
         }
     
 
+    }
+
+    bool speedBoostEnabled = false;
+
+    private void SpeedCollected()
+    {
+        if (!speedBoostEnabled)
+        {
+            speedBoostEnabled = true;
+            Debug.Log("Speed Collected");
+            StartCoroutine(SpeedBoostSequence());
+        }
+    
+    }
+
+    private IEnumerator SpeedBoostSequence()
+    {
+        GetComponent<Rigidbody>().mass = 400.0f;
+        yield return new WaitForSeconds(0.5f);
+        GetComponent<Rigidbody>().mass = 3000.0f;
+        speedBoostEnabled = false;
     }
 }

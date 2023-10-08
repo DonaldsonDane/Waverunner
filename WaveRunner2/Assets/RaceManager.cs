@@ -13,6 +13,8 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private List<GameObject> enemies;
     public int playerPosition;
 
+    [SerializeField] private TimerController timerController;
+
     [SerializeField] private PlayerManager pm;
 
 
@@ -149,9 +151,11 @@ public class RaceManager : MonoBehaviour
 
     public void RaceOver()
     {
+        timerController.EndTimer();
         Debug.Log("Game Over");
         pm.movable = false;
         GameObject.FindGameObjectWithTag("GameManager").gameObject.GetComponent<GameManager>().ShowEndGame();
+        
     }
 
 }

@@ -14,7 +14,7 @@ public class InitializeManager : MonoBehaviour
 
     [SerializeField] private RaceManager rm;
 
-
+    [SerializeField] private TimerController timerController;
 
 
     [SerializeField] private MeshFilter[] enemyMeshChoices;
@@ -87,6 +87,8 @@ public class InitializeManager : MonoBehaviour
                 }
             }
         }
+
+        timerController.StartTimer();
 
        
     }
