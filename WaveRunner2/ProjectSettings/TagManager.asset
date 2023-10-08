@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - RespawnPositions
   - Penguin
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,9 @@ public class RaceManager : MonoBehaviour
     [SerializeField] private Transform finishLine;
     [SerializeField] private GameObject player;
     [SerializeField] private List<GameObject> enemies;
+    public int playerPosition;
+
+    [SerializeField] private PlayerManager pm;
 
 
     [SerializeField] private int maxPenguins;
@@ -73,7 +76,7 @@ public class RaceManager : MonoBehaviour
     private void DeterminePlayerPosition()
     {
         int playerIndex = distanceList.FindIndex(item => item.Value == player);
-        int playerPosition = playerIndex + 1; // Add 1 to make it human-readable (1st, 2nd, 3rd, etc.)
+         playerPosition = playerIndex + 1; // Add 1 to make it human-readable (1st, 2nd, 3rd, etc.)
 
         //Debug.Log("Player position: " + playerPosition);
         
@@ -141,6 +144,14 @@ public class RaceManager : MonoBehaviour
         }
        
        
+    }
+
+
+    public void RaceOver()
+    {
+        Debug.Log("Game Over");
+        pm.movable = false;
+        GameObject.FindGameObjectWithTag("GameManager").gameObject.GetComponent<GameManager>().ShowEndGame();
     }
 
 }

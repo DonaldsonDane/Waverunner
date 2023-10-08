@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3392030514912436645}
   m_Layer: 5
   m_Name: UserInfo
-  m_TagString: Untagged
+  m_TagString: Penguin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 8949196073307433620}
   - component: {fileID: 3392030515487543950}
   - component: {fileID: 3392030515377716746}
+  - component: {fileID: 1915672649}
   m_Layer: 2
   m_Name: PenguinAI
   m_TagString: Penguin
@@ -454,6 +455,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1915672649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949196073307433623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903011c20aff75a4dac45f97d76ecfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathSound: {fileID: 8300000, guid: fba2b811767514743ae6962150060e12, type: 3}
+  collisionParticle: {fileID: 3392030516452251663}
+  obstacleType: 0
+  idNumber: 15
 --- !u!1001 &3392030515818449908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -463,6 +480,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 28f113bc1593119448bfebc93373c1ad, type: 3}
       propertyPath: m_Name
+      value: Penguin
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 28f113bc1593119448bfebc93373c1ad, type: 3}
+      propertyPath: m_TagString
       value: Penguin
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 28f113bc1593119448bfebc93373c1ad, type: 3}
@@ -543,6 +564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'FX_Fireworks_Blue_Small '
       objectReference: {fileID: 0}
+    - target: {fileID: 120410, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+      propertyPath: m_TagString
+      value: Penguin
+      objectReference: {fileID: 0}
     - target: {fileID: 444372, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -605,6 +630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+--- !u!198 &3392030516452251663 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19811986, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}
+  m_PrefabInstance: {fileID: 3392030516466521757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3392030516466372937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 444372, guid: 6636b3078b0905e489f698a11b7a6b6b, type: 3}

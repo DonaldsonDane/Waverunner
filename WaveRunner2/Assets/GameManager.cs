@@ -3,7 +3,7 @@ using Pathfinding;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +12,9 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
 
 
+    [SerializeField] private TMP_Text placeText;
 
-
-
+    [SerializeField] private CanvasGroup cg;
    
 
     //Holds what ship the player has chosen
@@ -153,6 +153,29 @@ public class GameManager : MonoBehaviour
       
         yield return new WaitForSeconds(5);
 
+    }
+
+
+    public void ShowEndGame()
+    {
+        placeText.text = GameObject.Find("RaceManager").gameObject.GetComponent<RaceManager>().playerPosition.ToString();
+        cg.alpha = 1;
+        cg.interactable = true;
+        cg.blocksRaycasts = true;
+    }
+
+    public void PlayAgain()
+    {
+        SceneManager.LoadScene("MainScene");
+        cg.alpha = 0;
+        cg.interactable = false;
+        cg.blocksRaycasts = false;
+    }
+
+
+    public void ReturnToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
 
