@@ -14,6 +14,11 @@ public class RaceManager : MonoBehaviour
 
     private void Awake()
     {
+       
+    }
+
+    public void SetEnemyPositions()
+    {
         // Find all objects with the tag 'Enemy' and add them to the 'enemies' list
         GameObject[] enemyObjects = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemyObjects)
@@ -53,7 +58,7 @@ public class RaceManager : MonoBehaviour
         int playerIndex = distanceList.FindIndex(item => item.Value == player);
         int playerPosition = playerIndex + 1; // Add 1 to make it human-readable (1st, 2nd, 3rd, etc.)
 
-        Debug.Log("Player position: " + playerPosition);
+        //Debug.Log("Player position: " + playerPosition);
         
         switch(playerPosition)
         {

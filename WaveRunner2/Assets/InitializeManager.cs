@@ -12,7 +12,7 @@ public class InitializeManager : MonoBehaviour
     [SerializeField] private Animator CountDownAnim;
 
 
- 
+    [SerializeField] private RaceManager rm;
 
 
 
@@ -27,14 +27,19 @@ public class InitializeManager : MonoBehaviour
 
     void Awake()
     {
-        _gm = GameObject.Find("GAMEMANAGER").GetComponent<GameManager>();
-        if (_gm == null)
+        
+        
+        
+            _gm = GameObject.Find("GAMEMANAGER").GetComponent<GameManager>();
+        
+      
+        if(_gm == null)
         {
-            Debug.LogError("GameManager hasn't been set!");
+            Debug.Log("Game Manager not set");
         }
 
-        
-       
+
+
     }
 
     void Start()
@@ -53,6 +58,9 @@ public class InitializeManager : MonoBehaviour
             aiPathObject[i].GetComponent<AIDestinationSetter>().target = finishPoint;
             aiPathObject[i].GetComponent<MeshFilter>().sharedMesh = enemyMeshChoices[Random.Range(0, enemyMeshChoices.Length)].sharedMesh;
         }
+
+        rm.SetEnemyPositions();
+
         //DisableAI();
     }
 
