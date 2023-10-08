@@ -557,7 +557,7 @@ AnimationClip:
   - time: 5
     functionName: BeginMusicTheme
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: ade8e9f52d483ff4fb641f86002097cd, type: 3}
+    objectReferenceParameter: {fileID: 8300000, guid: 3a8f20b495fceeb429466ec91bd6a5a9, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

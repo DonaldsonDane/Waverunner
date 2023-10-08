@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using TMPro;
 
 public class InitializeManager : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class InitializeManager : MonoBehaviour
     [SerializeField] private GameObject[] aiPathObject;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private Animator CountDownAnim;
+
+
+ 
+
+
 
 
     [SerializeField] private MeshFilter[] enemyMeshChoices;

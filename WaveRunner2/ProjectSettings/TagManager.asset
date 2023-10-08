@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Vehicle
   - Obstacle
+  - RespawnPositions
   layers:
   - Default
   - TransparentFX
