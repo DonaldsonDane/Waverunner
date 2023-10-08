@@ -1,20 +1,34 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+
+using System;
 using TMPro;
+using Pathfinding;
+
 public class RaceManager : MonoBehaviour
 {
     [SerializeField] private Transform finishLine;
     [SerializeField] private GameObject player;
     [SerializeField] private List<GameObject> enemies;
 
+
+    [SerializeField] private int maxPenguins;
+    [SerializeField] private Transform[] penguinSpawnerPositions;
+
     [SerializeField] private TMP_Text positionText;
 
     private List<KeyValuePair<float, GameObject>> distanceList;
 
 
+    [SerializeField] private GameObject penguinPrefab;
+
+    private bool raceOver = false;
+
+
     private void Awake()
     {
-       
+        BeginSpawningPenguins();
     }
 
     public void SetEnemyPositions()
@@ -25,6 +39,9 @@ public class RaceManager : MonoBehaviour
         {
             enemies.Add(enemy);
         }
+
+
+       
     }
 
     private void Update()
@@ -85,4 +102,45 @@ public class RaceManager : MonoBehaviour
                 break;
         }
     }
+
+
+
+    private void BeginSpawningPenguins()
+    {
+        // BeginSpawningPenguins()
+        StartCoroutine(PenguinTicker());
+
+    }
+    private GameObject spawnedPenguin; // Declare a variable to store the spawned penguin
+    [SerializeField] private Transform startingPosition;
+    private void SpawnPenguin()
+    {
+        for(int i = 0; i < 1; i++)
+        {
+            int randomIndex;
+         
+            
+                randomIndex = UnityEngine.Random.Range(0, penguinSpawnerPositions.Length);
+          
+
+           
+            Vector3 spawnPosition = penguinSpawnerPositions[randomIndex].position;
+            spawnedPenguin =  Instantiate(penguinPrefab, spawnPosition, transform.rotation * Quaternion.Euler(0f, 90f, 0f));
+            spawnedPenguin.gameObject.GetComponent<AIDestinationSetter>().target = startingPosition;
+            
+        }
+    }
+
+    private System.Collections.IEnumerator PenguinTicker()
+    {
+        if (!raceOver)
+        {
+            yield return new WaitForSeconds(3f);
+            SpawnPenguin();
+            StartCoroutine(PenguinTicker());
+        }
+       
+       
+    }
+
 }

@@ -9,6 +9,7 @@ TagManager:
   - Vehicle
   - Obstacle
   - RespawnPositions
+  - Penguin
   layers:
   - Default
   - TransparentFX
