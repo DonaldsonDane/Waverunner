@@ -22,6 +22,9 @@ public class InitializeManager : MonoBehaviour
 
     [SerializeField] private Transform finishPoint;
 
+
+    [SerializeField] private PlayerManager pm;
+
     private GameManager _gm;
     private bool[] spawnLocationUsed;
 
@@ -89,6 +92,7 @@ public class InitializeManager : MonoBehaviour
         }
 
         timerController.StartTimer();
+        pm.movable = true;
 
        
     }

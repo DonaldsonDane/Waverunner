@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
 
     [SerializeField] private TMP_Text placeText;
-
+    [SerializeField] private TMP_Text timerText;
     [SerializeField] private CanvasGroup cg;
    
 
@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
     public void ShowEndGame()
     {
         placeText.text = GameObject.Find("RaceManager").gameObject.GetComponent<RaceManager>().playerPosition.ToString();
+        timerText.text = GameObject.Find("Timerholder").gameObject.GetComponent<TimerController>().timer.ToString();
         cg.alpha = 1;
         cg.interactable = true;
         cg.blocksRaycasts = true;

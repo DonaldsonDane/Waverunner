@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-
+        movable = false;
         placeToSpawn = startingPosition;
         respawnObjects = GameObject.FindGameObjectsWithTag("RespawnPositions");
         respawnLocations = new List<Transform>(); // Initialize the List<Transform> here
@@ -168,7 +168,9 @@ public class PlayerManager : MonoBehaviour
         }
 
         transform.position = placeToSpawn.position;
+        transform.rotation = placeToSpawn.rotation;
         boatMesh.enabled = true;
+        GetComponentInChildren<BoxCollider>().enabled = true;
         movable = true;
         isDead = false;
     }
@@ -184,6 +186,7 @@ public class PlayerManager : MonoBehaviour
             EazySoundManager.PlaySound(deathSound);
             isDead = true;
             boatMesh.enabled = false;
+            GetComponentInChildren<BoxCollider>().enabled = false;
             movable = false;
             deathParticle.Play();
             yield return new WaitForSeconds(2f);

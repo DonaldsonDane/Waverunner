@@ -4,7 +4,7 @@ using TMPro;
 public class TimerController : MonoBehaviour
 {
     [SerializeField] private TMP_Text timerText;
-    private float timer;
+    public float timer;
     private bool isTimerRunning = false;
 
   
